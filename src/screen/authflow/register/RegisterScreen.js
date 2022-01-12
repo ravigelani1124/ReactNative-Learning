@@ -24,11 +24,11 @@ import {
 import styles from "./styles";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/core";
+import auth from "@react-native-firebase/auth";
 
 const RegisterScreen = () => {
+  const navigation = useNavigation();
 
-  const navigation = useNavigation()
-  
   const [userFName, setUserFName] = useState("");
   const [userLName, setUserLName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -42,33 +42,23 @@ const RegisterScreen = () => {
   const emailInputRef = createRef();
   const passwordInputRef = createRef();
 
-  const callUserRegisterAPI = async (dataToSend) => {
-    //Show Loader
+  const createUser = async (dataToSend) => {
     setLoading(true);
-    setIsRegistraionSuccess(true);
-    setLoading(false);
-    // try {
-    //   const response = await axios({
-    //     method: AuthDetails.POST,
-    //     url: "user/create",
-    //     baseURL: AuthDetails.baseURL,
-    //     headers: { "app-id": AuthDetails.appID },
-    //     body: {
-    //       firstName: userFName,
-    //       lastName: userLName,
-    //       email: userEmail,
-    //       password: userPassword,
-    //     },
-    //   });
-    //   console.log("RESPONSE DATA" + JSON.stringify(response.data.data));
-    //   setLoading(false);
-    //   setIsRegistraionSuccess(true);
-    // } catch (error) {
-    //   setLoading(false);
-    //   console.log(error);
-    //   alert(JSON.stringify(error));
-    // }
+    try {
+      let response = auth().createUserWithEmailAndPassword(
+        dataToSend.email,
+        dataToSend.password
+      );
+      if (response && response.user) {
+        setIsRegistraionSuccess(true);
+        setLoading(false);
+      }
+    } catch (error) {
+      alert(error);
+      setLoading(false);
+    }
   };
+
   const handleSubmitButton = () => {
     setErrortext("");
     if (userFName.trim() == "") {
@@ -92,7 +82,7 @@ const RegisterScreen = () => {
         email: userEmail,
         password: userPassword,
       };
-      callUserRegisterAPI(dataToSend);
+      createUser(dataToSend);
     }
   };
 
@@ -103,7 +93,8 @@ const RegisterScreen = () => {
           flex: 1,
           backgroundColor: "#307ecc",
           justifyContent: "center",
-        }}>
+        }}
+      >
         <Image
           source={icon.success}
           style={{
@@ -126,8 +117,15 @@ const RegisterScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={()=>{navigation.pop()}}>
-      <Image source={icon.back} style={{width:25,height:25, margin:20}}/>
+      <Pressable
+        onPress={() => {
+          navigation.pop();
+        }}
+      >
+        <Image
+          source={icon.back}
+          style={{ width: 25, height: 25, margin: 20 }}
+        />
       </Pressable>
       <Loader loading={loading} />
       <ScrollView
@@ -141,12 +139,12 @@ const RegisterScreen = () => {
           <Image
             source={icon.logo}
             borderRadius={30}
-                style={{
-                  width: "60%",
-                  height: 100,
-                  resizeMode: "contain",
-                  margin: 20,
-                }}
+            style={{
+              width: "60%",
+              height: 100,
+              resizeMode: "contain",
+              margin: 20,
+            }}
           />
         </View>
 

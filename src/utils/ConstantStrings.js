@@ -4,8 +4,12 @@ export const Routes = {
     SplashScreen: 'SplashScreen',
     LoginScreen:'LoginScreen',
     RegisterScreen:'RegisterScreen',
-    DrawerNavigationRoutesScreen: 'DrawerNavigationRoutesScreen',
+    DrawerNavigationRoutes: 'DrawerNavigationRoutes',
     Auth:'Auth',
+    HomeScreen:'HomeScreen',
+    SettingsScreen : 'SettingsScreen',
+    
+
 }
 
 export const AuthDetails = {

@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Routes } from "../../../utils/ConstantStrings";
 import Color from "../../../utils/Colors";
 import Loader from "../../../component/loder/Loder";
+import auth, { firebase } from "@react-native-firebase/auth";
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -13,9 +14,12 @@ const SplashScreen = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(true);
-      navigation.navigate(Routes.Auth);
-      setLoading(false);
+      let user = firebase.auth().currentUser?.uid;
+      if (user) {
+        navigation.replace(Routes.DrawerNavigationRoutes);
+      } else {
+        navigation.navigate(Routes.Auth);
+      }
     }, 3000);
   }, []);
 

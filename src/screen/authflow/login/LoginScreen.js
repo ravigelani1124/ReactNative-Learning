@@ -24,6 +24,7 @@ import {
 
 import icon from "../../../assets/images";
 import Color from "../../../utils/Colors";
+import auth from "@react-native-firebase/auth";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -36,9 +37,21 @@ const LoginScreen = () => {
 
   const callLoginAPI = async () => {
     setLoading(true);
-    let dataToSend = { email: userEmail, password: userPassword };
-    setLoading(false);
-    navigation.navigate(Routes.DrawerNavigationRoutesScreen);
+    try {
+      auth()
+        .signInWithEmailAndPassword(userEmail, userPassword)
+        .then(() => {
+          setLoading(false);
+          navigation.navigate(Routes.DrawerNavigationRoutesScreen);
+        })
+        .catch(() => {
+          alert(error);
+          setLoading(false);
+        });
+    } catch (error) {
+      alert(error);
+      setLoading(false);
+    }
   };
 
   const handleSubmitPress = () => {

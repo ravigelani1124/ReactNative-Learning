@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 // Import Navigators from React Navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -6,14 +6,19 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "./src/screen/authflow/splash/SplashScreen";
 import LoginScreen from "./src/screen/authflow/login/LoginScreen";
 import RegisterScreen from "./src/screen/authflow/register/RegisterScreen";
-import DrawerNavigationRoutesScreen from "./src/screen/drawerflow/DrawerNavigationScreen";
+import DrawerNavigationRoutes from "./src/screen/drawerflow/DrawerNavigationRoute";
 
 //Import Constant Strings for Screen
 import { Routes } from "./src/utils/ConstantStrings";
 
 const Stack = createNativeStackNavigator();
 
+
+
+
 const Auth = () => {
+
+
   // Stack Navigator for Login and Sign up Screen
   return (
     <Stack.Navigator initialRouteName={Routes.LoginScreen}>
@@ -46,8 +51,8 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name={Routes.DrawerNavigationRoutesScreen}
-          component={DrawerNavigationRoutesScreen}
+          name={Routes.DrawerNavigationRoutes}
+          component={DrawerNavigationRoutes}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
