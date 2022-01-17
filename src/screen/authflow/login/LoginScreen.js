@@ -24,7 +24,7 @@ import {
 
 import icon from "../../../assets/images";
 import Color from "../../../utils/Colors";
-import auth,{firebase} from "@react-native-firebase/auth";
+import auth from "@react-native-firebase/auth";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -36,27 +36,23 @@ const LoginScreen = () => {
   const passwordInputRef = createRef();
 
   const callLoginAPI = async () => {
+    console.log("credentail",userEmail, userPassword)
     setLoading(true);
-    try {
-      auth()
-        .signInWithEmailAndPassword(userEmail, userPassword)
-        .then(() => {
-          setLoading(false);
-          navigation.navigate(Routes.DrawerNavigationRoutesScreen);
-        })
-        .catch(() => {
-          alert(error);
-          setLoading(false);
-        });
-    } catch (error) {
-      alert(error);
-      setLoading(false);
-    }
+    auth()
+      .signInWithEmailAndPassword(userEmail, userPassword)
+      .then(() => {
+        setLoading(false);
+        navigation.navigate(Routes.DrawerNavigationRoutes);
+      })
+      .catch((error) => {
+        setLoading(false);
+        alert(error);
+      });
   };
 
   const handleSubmitPress = () => {
     setErrortext("");
-    if (userEmail.trim() == "") {
+    if (userEmail?.trim() == "") {
       alert(ValidationString.email_empty);
     } else if (checkEmailValid(userEmail) == false) {
       alert(ValidationString.email_valid);

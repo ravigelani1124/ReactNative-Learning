@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Text,
   Keyboard,
-  Button,
   Pressable,
 } from "react-native";
 import icon from "../../../assets/images";
@@ -41,22 +40,26 @@ const RegisterScreen = () => {
   const emailInputRef = createRef();
   const passwordInputRef = createRef();
 
-  const createUser = async (dataToSend) => {
+  const createUser =  (dataToSend) => {
     setLoading(true);
-    try {
-      let response = await auth().createUserWithEmailAndPassword(
-        dataToSend.email,
-        dataToSend.password
-      );
-      if (response && response.user) {
+      auth()
+      .signInWithCredential(dataToSend.email,dataToSend.password)
+      .then(() => {
+
+        setDataUserIntoFirebase()
         setIsRegistraionSuccess(true);
+          setLoading(false);
+      })
+      .catch((error) => {
+        alert(error);
         setLoading(false);
-      }
-    } catch (error) {
-      alert(error);
-      setLoading(false);
-    }
+        console.error(error);
+      });
   };
+
+  const setDataUserIntoFirebase = () =>{
+    
+  }
 
   const handleSubmitButton = () => {
     setErrortext("");
