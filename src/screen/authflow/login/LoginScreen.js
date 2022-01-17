@@ -8,7 +8,7 @@ import {
   Routes,
 } from "../../../utils/ConstantStrings";
 import axios from "axios";
-import { useNavigation } from "@react-navigation/core";
+import { useNavigation } from "@react-navigation/native";
 import styles from "../login/styles";
 import {
   StyleSheet,
@@ -24,7 +24,7 @@ import {
 
 import icon from "../../../assets/images";
 import Color from "../../../utils/Colors";
-import auth from "@react-native-firebase/auth";
+import auth,{firebase} from "@react-native-firebase/auth";
 
 const LoginScreen = () => {
   const navigation = useNavigation();

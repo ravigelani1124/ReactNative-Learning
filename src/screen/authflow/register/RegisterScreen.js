@@ -23,7 +23,7 @@ import {
 } from "../../../utils/ConstantStrings";
 import styles from "./styles";
 import axios from "axios";
-import { useNavigation } from "@react-navigation/core";
+import { useNavigation } from "@react-navigation/native";
 import auth from "@react-native-firebase/auth";
 
 const RegisterScreen = () => {

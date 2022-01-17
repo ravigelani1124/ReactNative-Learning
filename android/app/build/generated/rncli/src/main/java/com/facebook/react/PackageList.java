@@ -19,6 +19,10 @@ import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
 import com.swmansion.rnscreens.RNScreensPackage;
+// react-native-gesture-handler
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+// react-native-reanimated
+import com.swmansion.reanimated.ReanimatedPackage;
 
 public class PackageList {
   private Application application;
@@ -67,7 +71,9 @@ public class PackageList {
       new ReactNativeFirebaseAppPackage(),
       new ReactNativeFirebaseAuthPackage(),
       new SafeAreaContextPackage(),
-      new RNScreensPackage()
+      new RNScreensPackage(),
+      new RNGestureHandlerPackage(),
+      new ReanimatedPackage()
     ));
   }
 }

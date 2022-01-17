@@ -4,9 +4,8 @@ import icon from "../../../assets/images";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { Routes } from "../../../utils/ConstantStrings";
-import Color from "../../../utils/Colors";
 import Loader from "../../../component/loder/Loder";
-import auth, { firebase } from "@react-native-firebase/auth";
+import auth,{firebase} from "@react-native-firebase/auth";
 
 const SplashScreen = () => {
   const navigation = useNavigation();
