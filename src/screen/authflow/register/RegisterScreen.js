@@ -22,7 +22,6 @@ import {
   Routes,
 } from "../../../utils/ConstantStrings";
 import styles from "./styles";
-import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import auth from "@react-native-firebase/auth";
 
@@ -45,7 +44,7 @@ const RegisterScreen = () => {
   const createUser = async (dataToSend) => {
     setLoading(true);
     try {
-      let response = auth().createUserWithEmailAndPassword(
+      let response = await auth().createUserWithEmailAndPassword(
         dataToSend.email,
         dataToSend.password
       );

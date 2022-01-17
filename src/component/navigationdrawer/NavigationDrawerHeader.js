@@ -8,7 +8,7 @@ const NavigationDrawerHeader = (props) => {
 
   return (
     <View style={{ flexDirection: "row" }}>
-      <TouchableOpacity onPress={toggleDrawer}>
+      <TouchableOpacity onPress={""}>
         <Image
           source={{
             uri: "https://raw.githubusercontent.com/AboutReact/sampleresource/master/drawerWhite.png",

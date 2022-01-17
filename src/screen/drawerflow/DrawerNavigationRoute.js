@@ -8,11 +8,14 @@ import SettingsScreen from "./setting/SettingsScreen";
 import CustomSidebarMenu from "../../component/customsidebar/CustomSidebarMenu";
 import NavigationDrawerHeader from "../../component/navigationdrawer/NavigationDrawerHeader";
 import { Routes } from "../../utils/ConstantStrings";
+import { useNavigation } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const homeScreenStack = () => {
+
+  const navigation = useNavigation()
   return (
     <Stack.Navigator initialRouteName="HomeScreen">
       <Stack.Screen
